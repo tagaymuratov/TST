@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="heroTitle">
+  <p>Продукция</p>
+</section>
+
+<section class="allcats">
+{% for item in cats %}
+  <a href="{% url 'categories' item.id %}">
+    {% if item.img %}
+      <img src="{{ item.img.url}}">
+    {% else %}
+      <p>{{ item.name }}</p>
+    {% endif %}
+  </a>
+{% endfor %}
+</section>
+
+{% endblock content %}

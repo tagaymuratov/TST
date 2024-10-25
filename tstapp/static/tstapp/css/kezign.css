@@ -1,0 +1,78 @@
+/* 600 -> midle -> 840 */
+
+:root {
+  --color-on-surf: #000000;
+  --color-surf-0: #fff;
+  --color-surf-1: #f8fafd;
+  --color-surf-2: #f3f6fc;
+  --color-surf-3: #eff3fa;
+  --color-surf-4: #edf2fa;
+  --color-surf-5: #eaf0f9;
+  --color-primary: #000000;
+  --color-secondary: #4C0072;
+  --border-radius: 8px;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  display: block;
+  color: var(--color-primary);
+}
+
+p {
+  line-height: 1.5em;
+}
+
+hr {
+  margin: 0.5rem 0;
+}
+
+h1,h2,h3,h4,h5,h6{
+  line-height: 1.1;
+}
+
+.btn-outlined {
+  height: 2.5rem;
+  border-radius: 1.25rem;
+  line-height: 2.5rem;
+  font-weight: 500;
+  padding: 0 1.5rem;
+  cursor: pointer;
+  border: 1px solid #1f1f1f;
+}
+
+.btn-filled {
+  height: 2.5rem;
+  border-radius: 1.25rem;
+  line-height: 2.5rem;
+  font-weight: 500;
+  padding: 0 1.5rem;
+  cursor: pointer;
+  transition: background-color .3s ease-in-out;
+  border: none;
+  text-align: center;
+}
+
+input[type="text"] {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}

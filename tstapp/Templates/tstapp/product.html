@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="product">
+  <div class="imgsList">
+    {% for img in i %}
+      <div class="imgBox sqBox">
+        <img src="{{ img.thumb.url }}" class="subImg">
+        <img src="{{ img.src.url }}" class="original">
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class='mainImgContainer sqBox'>
+    <img class="mainImg" src="{{ i.0.thumb.url }}">
+  </div>
+
+  <div class="desc">
+    <h1>{{ p.title }}</h1>
+    <div class="arc">{{ p.article }}</div>
+    <p class="brand">Производитель: <b>{{ p.brand }}</b></p>
+    <div>{{ p.description|linebreaks }}</div>
+    <p class="price">Стоимость: {{ p.price }} ₸</p>
+    {% if p.available == False %}
+      <p class='product_available'>НЕТ В НАЛИЧИИ</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="lineProducts">
+  <h1>Смотрите также</h1>
+  <div class="cards">
+    {% for item in sames %} 
+      <a class="card" href="{{ item.p.get_absolute_url }}">
+        <!--<span class="material-symbols-rounded">favorite</span>-->
+        <div class="imgbox">
+          <img src="{{ item.i.thumb.url }}">
+        </div>
+        <div class="group">
+          <div class="arc">{{ item.p.article }}</div>  
+          <div class="price">{{ item.p.price }}</div>
+        </div>
+        <div class="title">{{ item.p.title }}</div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="lineProducts">
+  <h1>Еще от {{ brandTitle }}</h1>
+  <div class="cards">
+    {% for item in brands %} 
+      <a class="card" href="{{ item.p.get_absolute_url }}">
+        <!--<span class="material-symbols-rounded">favorite</span>-->
+        <div class="imgbox">
+          <img src="{{ item.i.thumb.url }}">
+        </div>
+        <div class="group">
+          <div class="arc">{{ item.p.article }}</div>  
+          <div class="price">{{ item.p.price }}</div>
+        </div>
+        <div class="title">{{ item.p.title }}</div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock content %}
+
+{% block modalList %}
+  {% for img in i %}
+    <div class="modal-box">
+      <img src="{{ img.thumb.url }}" class="subImg">
+      <img src="{{ img.src.url }}" class="original">
+    </div>
+  {% endfor %}
+{% endblock modalList %}
+
+{% block scripts %}
+<script src="{% static 'tstapp/js/product.js' %}"></script>
+{% endblock scripts%}

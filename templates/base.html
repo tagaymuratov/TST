@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Безопасность в деталях</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" type="text/css" href="{% static 'tstapp/css/style.css' %}">
+</head>
+<body>
+  <header>
+    <a href="{% url 'index' %}" class="logo_link"><img src="{% static 'tstapp/imgs/tst-logo.svg' %}"></a>
+    <nav>
+      <div class="nav_drop">
+        <a href="{% url 'allcats' %}" class="nav_products">ПРОДУКЦИЯ</a>
+        <div class="nav_products_drop">
+          {% for c in db_cats %}
+          <a href="{% url 'categories' c.id %}">{{ c.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="nav_drop">
+        <a href="{% url 'allbrands' %}" class="nav_products">БРЕНДЫ</a>
+        <div class="nav_products_drop">
+          {% for b in db_brands %}
+          <a href="{% url 'brands' b.id %}">{{ b.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <a href="#">КОНТАКТЫ</a>
+    </nav>
+<!--
+    {% if user.is_authenticated %}
+      <div>{{ user.username}}</div>
+      <a href="{% url 'kzauth:logout' %}">logout</a>
+    {% else %}
+    <div class="hLoggin">
+      <a href="{% url 'kzauth:login' %}"><span class="material-symbols-rounded">login</span></a>
+    </div>
+    {% endif %}
+    <div class="hUser">
+      <a href="#"><span class="material-symbols-rounded">favorite</span></a>
+      <a href="#"><span class="material-symbols-rounded">account_circle</span></a>
+    </div>
+-->
+    <span class="material-symbols-rounded burger">menu</span>
+  </header>
+    
+  <aside class="sideNav">
+    <span class="material-symbols-rounded sideNavClose">close</span>
+    <a href="{% url 'allcats' %}" class="sideNav_products">Продукция</a>
+    <div class="sideNav_products_drop">
+      {% for c in db_cats %}
+      <a href="{% url 'categories' c.id %}">{{ c.name }}</a>
+      {% endfor %}
+    </div>
+
+    <a href="{% url 'allbrands' %}" class="sideNav_products">Бренды</a>
+    <div class="sideNav_products_drop">
+      {% for b in db_brands %}
+      <a href="{% url 'brands' b.id %}">{{ b.name }}</a>
+      {% endfor %}
+    </div>
+    <a href="#">Контакты</a>
+  </aside>
+
+  {% block content %}{% endblock content %}
+
+  <div class="modal">
+    <span class="material-symbols-rounded modal-close">close</span>
+    <div class="modal-box-content">
+      <img src="" class="modal-content">
+    </div>
+    <div class="modal-list">
+      {% block modalList %}{% endblock modalList %}
+    </div>
+  </div>
+
+  <footer>
+    <div class='footer_txt'>
+      <p>info@tst-group.kz | +7 775 365 05 98</p>
+      <p>г. Атырау, пр. Мухтара Ауэзова, 62</p>
+    </div>
+    <div class="socialLinks">
+      <a href="https://api.whatsapp.com/send/?phone=77022411250" target="_blank"><img src="{% static 'tstapp/imgs/whatsapp.png' %}" alt=""></a>
+      <a href="https://www.instagram.com/tst_group.kz" target="_blank"><img src="{% static 'tstapp/imgs/instagram.png' %}" alt=""></a>
+    </div>
+    
+  </footer>
+
+  <script src="{% static 'tstapp/js/script.js' %}"></script>
+  {% block scripts%}{% endblock scripts%}
+</body>
+</html>

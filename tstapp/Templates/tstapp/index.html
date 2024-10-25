@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <img src="{% static 'tstapp/imgs/hero-1.jpg' %}" alt="" class='index-hero'>
+
+  <section class="slogan">
+    <h1>Безопасность в деталях</h1>
+  </section>
+
+  <section class="lineProducts">
+    <h1>Новые товары</h1>
+    <div class="cards">
+      {% for item in products %} 
+        <a class="card" href="{{ item.p.get_absolute_url }}">
+          <!--<span class="material-symbols-rounded">favorite</span>-->
+          <div class="imgbox">
+            <img src="{{ item.i.thumb.url }}">
+          </div>
+          <div class="group">
+            <div class="arc">{{ item.p.article }}</div>  
+            <div class="price">{{ item.p.price }} ₸</div>
+          </div>
+          <div class="title">{{ item.p.title }}</div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="sectionPartners">
+    <h1>Наши поставщики</h1>
+    <div class="partners">
+      <img src="{% static 'tstapp/imgs/logos/Ansell.svg' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/Cerva.svg' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/Dickies.svg' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/Velilla.svg' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/Uvex.svg' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/mascot.jpg' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/Dupont.png' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/swf.png' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/portwest.png' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/Martor.svg' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/msa.svg' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/tecron.svg' %}" class="item">
+      <img src="{% static 'tstapp/imgs/logos/Tyvek.svg' %}" class="item">
+    </div>
+  </section>
+
+{% endblock content %}
