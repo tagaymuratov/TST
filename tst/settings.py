@@ -13,8 +13,9 @@ DEBUG = True
 #ALLOWED_HOSTS = []
 ALLOWED_HOSTS = [
     'localhost',
+    '.tst-group.kz',
     '127.0.0.1',
-    '5.35.105.62',
+    '51.250.41.229',
 ]
 
 # Application definition
