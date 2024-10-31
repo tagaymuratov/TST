@@ -27,18 +27,6 @@ class Product(models.Model):
       super().save(*args, **kwargs)
   
 class Images(models.Model):
-  #class Colors(models.TextChoices):
-  #  RED = '#ff0000', 'Красный'
-  #  GREEN = '#00ff00', 'Зеленый'
-  #  BLUE = '#ff0000', 'Синий'
-  #  YELLOW = '#ff0000', 'Желтый'
-  #  BLACK = '#ff0000', 'Черный'
-  #  WHITE = '#ff0000', 'Белый'
-  #  ORANGE = '#ff0000', 'Оранжевый'
-  #  PURPLE = '#ff0000', 'Фиолетовый'
-  #  GREY = '#ff0000', 'Серый'
-  #  BROWN = '#ff0000', 'Коричневый'
-
   article = models.ForeignKey('Product', on_delete=models.DO_NOTHING, verbose_name='Артикль')
   src = models.ImageField(upload_to='imgs/products/', verbose_name='Изображение')
   thumb = models.ImageField(upload_to='imgs/products/', verbose_name='Миниатюра', blank=True, editable=False)

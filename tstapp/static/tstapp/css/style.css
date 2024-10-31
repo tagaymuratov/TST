@@ -13,6 +13,14 @@ html {
   background: var(--color-surf-2);
 }
 
+.text-link{
+  padding: .5rem;
+  border-radius: var(--border-radius);
+  &:hover {
+    background: var(--color-surf-5);
+  }
+}
+
 header{
   display: flex;
   align-items: center;
@@ -106,14 +114,6 @@ header{
   left: 100%;
   z-index: 20;
   transition: left .3s;
-
-  a{
-    padding: .5rem;
-    border-radius: var(--border-radius);
-    &:hover{
-      background: var(--color-surf-5);
-    }
-  }
 }
 
 .sideNav_products_drop{
@@ -407,36 +407,36 @@ footer{
 }
 
 .allbrands, .allcats{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  margin: 2rem 1rem 1rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.map{
+  width: calc(100% - 2rem);
+  margin: 1rem;
+  border-radius: var(--border-radius);
+}
+
+.contacts{
+  margin: 2rem 1rem 2rem 1rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
   gap: 1rem;
-  justify-content: center;
-  margin: 3rem 1rem 1rem 1rem;
+}
 
+.contacts-card{
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
   a{
-    width: 100%;
-    height: 0;
-    padding-top: 100%;
-    font-size: 1.5rem;
-    text-align: center;
-    position: relative;
+    display: inline-block;
+    font-weight: 600;
   }
+}
 
-  img{
-    max-width: 100%;
-    max-height: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  p{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+.contacts-map{
+  min-height: calc(100vh - 19.25rem);
 }
 
 @keyframes zoom {
@@ -445,6 +445,10 @@ footer{
 }
 
 @media screen and (max-width:600px) {
+  nav {
+    display: none;
+  }
+
   footer{
     grid-template-columns: auto;
     justify-content: center;
@@ -452,10 +456,20 @@ footer{
   .socialLinks{
     margin-right: auto;
   }
+
+  .contacts{
+    grid-template-columns: 1fr;
+  }
 }
 
-@media screen and (max-width:840px) {
-  nav{display: none;}
+@media screen and (min-width:601px) {
+  nav {
+    display: none;
+  }
+  
+  .contacts {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media screen and (min-width: 841px) {

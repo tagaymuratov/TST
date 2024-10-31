@@ -10,7 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
   list_display_links = ('article',)
   list_per_page = 10
   search_fields = ['article']
-  list_filter = ['category__name', 'brand__name']
+  list_filter = ['category__name', 'brand__name', 'available']
 
 @admin.register(Categories)
 class CategoriesAdmin(admin.ModelAdmin):

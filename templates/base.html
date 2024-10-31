@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <title>Безопасность в деталях</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" type="text/css" href="{% static 'tstapp/css/style.css' %}">
+  <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
   <header>
@@ -32,7 +32,7 @@
           {% endfor %}
         </div>
       </div>
-      <a href="#">КОНТАКТЫ</a>
+      <a href="{% url 'contacts'%}">КОНТАКТЫ</a>
     </nav>
 <!--
     {% if user.is_authenticated %}
@@ -53,20 +53,20 @@
     
   <aside class="sideNav">
     <span class="material-symbols-rounded sideNavClose">close</span>
-    <a href="{% url 'allcats' %}" class="sideNav_products">Продукция</a>
+    <a href="{% url 'allcats' %}" class="sideNav_products text-link">Продукция</a>
     <div class="sideNav_products_drop">
       {% for c in db_cats %}
-      <a href="{% url 'categories' c.id %}">{{ c.name }}</a>
+      <a href="{% url 'categories' c.id %}" class="text-link">{{ c.name }}</a>
       {% endfor %}
     </div>
 
-    <a href="{% url 'allbrands' %}" class="sideNav_products">Бренды</a>
+    <a href="{% url 'allbrands' %}" class="sideNav_products text-link">Бренды</a>
     <div class="sideNav_products_drop">
       {% for b in db_brands %}
-      <a href="{% url 'brands' b.id %}">{{ b.name }}</a>
+      <a href="{% url 'brands' b.id %}" class="text-link">{{ b.name }}</a>
       {% endfor %}
     </div>
-    <a href="#">Контакты</a>
+    <a href="#" class="text-link">Контакты</a>
   </aside>
 
   {% block content %}{% endblock content %}

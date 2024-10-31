@@ -141,3 +141,6 @@ def allBrands(request):
     'brands':brands
   }
   return render(request, 'tstapp/allbrands.html', data)
+
+def contacts(request):
+  return render(request, 'tstapp/contacts.html')
