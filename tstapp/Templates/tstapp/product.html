@@ -6,17 +6,19 @@
 {% block content %}
 
 <section class="product">
-  <div class="imgsList">
-    {% for img in i %}
+  <div class="product-img">
+    <div class="imgsList">
+      {% for img in i %}
       <div class="imgBox sqBox">
         <img src="{{ img.thumb.url }}" class="subImg">
         <img src="{{ img.src.url }}" class="original">
       </div>
-    {% endfor %}
-  </div>
-
-  <div class='mainImgContainer sqBox'>
-    <img class="mainImg" src="{{ i.0.thumb.url }}">
+      {% endfor %}
+    </div>
+    
+    <div class='mainImgContainer sqBox'>
+      <img class="mainImg" src="{{ i.0.thumb.url }}">
+    </div>
   </div>
 
   <div class="desc">
@@ -51,7 +53,7 @@
 </section>
 
 <section class="lineProducts">
-  <h1>Еще от {{ brandTitle }}</h1>
+  <h1>Еще от {{ p.brand.name }}</h1>
   <div class="cards">
     {% for item in brands %} 
       <a class="card" href="{{ item.p.get_absolute_url }}">

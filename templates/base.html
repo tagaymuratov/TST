@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href='{% static "tstapp/imgs/favicon.svg" %}' sizes='any' type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap">
@@ -32,6 +33,7 @@
           {% endfor %}
         </div>
       </div>
+      <a href="{% url 'about'%}">О НАС</a>
       <a href="{% url 'contacts'%}">КОНТАКТЫ</a>
     </nav>
 <!--
@@ -53,20 +55,22 @@
     
   <aside class="sideNav">
     <span class="material-symbols-rounded sideNavClose">close</span>
-    <a href="{% url 'allcats' %}" class="sideNav_products text-link">Продукция</a>
-    <div class="sideNav_products_drop">
+    <a href="{% url 'allcats' %}" class="sideNav_products text-link">ПРОДУКЦИЯ</a>
+    <!--<div class="sideNav_products_drop">
       {% for c in db_cats %}
       <a href="{% url 'categories' c.id %}" class="text-link">{{ c.name }}</a>
       {% endfor %}
-    </div>
+    </div>-->
 
-    <a href="{% url 'allbrands' %}" class="sideNav_products text-link">Бренды</a>
-    <div class="sideNav_products_drop">
+    <a href="{% url 'allbrands' %}" class="sideNav_products text-link">БРЕНДЫ</a>
+    <!--<div class="sideNav_products_drop">
       {% for b in db_brands %}
       <a href="{% url 'brands' b.id %}" class="text-link">{{ b.name }}</a>
       {% endfor %}
-    </div>
-    <a href="#" class="text-link">Контакты</a>
+    </div>-->
+    <a href="{% url 'about'%}" class="text-link">О НАС</a>
+    <a href="{% url 'contacts' %}" class="text-link">КОНТАКТЫ</a>
+    <a href="{% url 'index' %}" class="sideNav-logo"><img src="{% static 'tstapp/imgs/tst-logo.svg' %}"></a>
   </aside>
 
   {% block content %}{% endblock content %}

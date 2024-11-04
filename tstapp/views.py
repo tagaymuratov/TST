@@ -1,9 +1,8 @@
 from django.shortcuts import get_object_or_404, render
-from django.db.models import F
 from tstapp.models import Brands, Product, Categories, Images
 
 def index(request):
-  products = Product.objects.all().order_by('-id')[:8]
+  products = Product.objects.all().order_by('-id')[:12]
   products_list = []
   for p in products:
     products_list.append(p.pk)
@@ -32,7 +31,7 @@ def product(request, product_slug):
   post = get_object_or_404(Product, article=product_slug)
   imgs = Images.objects.filter(article = post)
 
-  same = Product.objects.filter(category = post.category).exclude(id = post.pk)[:5]
+  same = Product.objects.filter(category = post.category).exclude(id = post.pk)[:6]
   same_list = []
   for s in same:
     same_list.append(s.pk)
@@ -49,7 +48,7 @@ def product(request, product_slug):
             'p' : p
           })
 
-  brand_prod = Product.objects.filter(brand = post.brand).exclude(id = post.pk)[:5]
+  brand_prod = Product.objects.filter(brand = post.brand).exclude(id = post.pk)[:6]
   brand_list = []
   for b in brand_prod:
     brand_list.append(b.pk)
@@ -79,7 +78,9 @@ def howto(request):
   return render(request, 'tstapp/howto.html')
 
 def categories(request, id):
-  cat = Categories.objects.get(id=id)
+  cats = Categories.objects.all().order_by('name')
+  cat = cats.get(id=id)
+  #cat = Categories.objects.get(id=id)
   products = Product.objects.filter(category=cat)
   product_list = []
   for p in products:
@@ -98,18 +99,20 @@ def categories(request, id):
           })
 
   data = {
-    'title':cat,
+    'cats':cats,
+    'cat':cat,
     'pi' : cards
   }
   return render(request, 'tstapp/categories.html', data)
 
 def brands(request, id):
-  brand = Brands.objects.get(id=id)
+  brands = Brands.objects.all().order_by('name')
+  brand = brands.get(id=id)
   products = Product.objects.filter(brand=brand)
   product_list = []
   for p in products:
     product_list.append(p.pk)
-    tempImgs = Images.objects.filter(article__in=product_list)
+  tempImgs = Images.objects.filter(article__in=product_list)
   cards = []
   article = ' '
   for i in tempImgs:
@@ -123,24 +126,69 @@ def brands(request, id):
           })
 
   data = {
-    'title':brand.name,
+    'brands':brands,
+    'brand':brand,
     'pi':cards
   }
   return render(request, 'tstapp/brands.html', data)
 
 def allcats(request):
-  cats = Categories.objects.all()
+  cats = Categories.objects.all().order_by('name')
+  products = Product.objects.all()[:24]
+  products_list = []
+  for p in products:
+    products_list.append(p.pk)
+
+  tempImgs = Images.objects.filter(article__in=products_list)
+  prod = []
+  article = ' '
+
+  for i in tempImgs:
+    if article != i.article: 
+      article = i.article
+      for p in products:
+        if p == i.article:
+          prod.append({
+            'i' : i,
+            'p' : p
+          })
+
+
   data = {
-    'cats':cats
+    'cats':cats,
+    'items':prod
   }
   return render(request, 'tstapp/allcats.html', data)
 
 def allBrands(request):
-  brands = Brands.objects.all()
+  brands = Brands.objects.all().order_by('name')
+  products = Product.objects.all()[:24]
+  products_list = []
+  for p in products:
+    products_list.append(p.pk)
+
+  tempImgs = Images.objects.filter(article__in=products_list)
+  prod = []
+  article = ' '
+
+  for i in tempImgs:
+    if article != i.article: 
+      article = i.article
+      for p in products:
+        if p == i.article:
+          prod.append({
+            'i' : i,
+            'p' : p
+          })
+
   data = {
-    'brands':brands
+    'brands':brands,
+    'items' : prod
   }
   return render(request, 'tstapp/allbrands.html', data)
 
 def contacts(request):
   return render(request, 'tstapp/contacts.html')
+
+def about(request):
+  return render(request, 'tstapp/about.html')

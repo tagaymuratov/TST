@@ -1,24 +1,33 @@
 {% extends "base.html" %}
 
-{% block title %}TST - {{ title }}{%endblock title%}
+{% block title %}TST - {{ cat.name }}{%endblock title%}
 
 {% block content %}
 
 <section class="heroTitle">
-  <p>{{ title }}</p>
+  <p>{{ cat.name }}</p>
 </section>
 
-<section class="mLineProducts">
+<section class="section-main">
+  <div class="section-side-h">
+    {% for item in cats %}
+      {% if item.name == cat.name %}
+        <p class="text-link-selected">{{ item.name }}</p>
+      {% else %}
+        <a href="{% url 'categories' item.id %}" class="text-link">{{ item.name }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
   <div class="cards">
     {% for item in pi %}
-      <a class="card" href="{{ item.p.get_absolute_url }}">
+     <a class="card" href="{{ item.p.get_absolute_url }}">
         <!--<span class="material-symbols-rounded">favorite</span>-->
         <div class="imgbox">
           <img src="{{ item.i.thumb.url }}">
         </div>
         <div class="group">
           <div class="arc">{{ item.p.article }}</div>  
-          <div class="price">{{ item.p.price }}</div>
+          <div class="price">{{ item.p.price }} ₸</div>
         </div>
         <div class="title">{{ item.p.title }}</div>
       </a>

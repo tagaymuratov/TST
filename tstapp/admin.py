@@ -6,6 +6,7 @@ from .models import Brands, Categories, Images, Product
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+  ordering = ['article']
   list_display = ('article', 'category', 'brand', 'available',)
   list_display_links = ('article',)
   list_per_page = 10
@@ -14,6 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Categories)
 class CategoriesAdmin(admin.ModelAdmin):
+  ordering = ['name']
   list_display = ('id', 'name')
   list_display_links = ('id', 'name')
 
@@ -26,5 +28,6 @@ class ImagesAdmin(admin.ModelAdmin):
   image_tag.short_description = 'Image'
   list_display = ['image_tag','src', ]
 
-
-admin.site.register(Brands)
+@admin.register(Brands)
+class BrandsAdmin(admin.ModelAdmin):
+  ordering = ['name']

@@ -1,6 +1,7 @@
 /* 600 -> midle -> 840 */
 
 :root {
+  /*color-scheme: light dark;*/
   --color-on-surf: #000000;
   --color-surf-0: #fff;
   --color-surf-1: #f8fafd;
