@@ -49,6 +49,10 @@ h1,h2,h3,h4,h5,h6{
   line-height: 1.1;
 }
 
+ul{
+  list-style: none;
+}
+
 .btn-outlined {
   height: 2.5rem;
   border-radius: 1.25rem;

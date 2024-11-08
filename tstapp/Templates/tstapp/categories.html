@@ -12,7 +12,20 @@
   <div class="section-side-h">
     {% for item in cats %}
       {% if item.name == cat.name %}
-        <p class="text-link-selected">{{ item.name }}</p>
+        {% if subCat != 0 %}
+          <a href="{% url 'categories' item.id %}" class="text-link">{{ item.name }}</a>
+        {% else %}
+          <p class="text-link-selected">{{ item.name }}</p>
+        {% endif %}
+
+        {% for sc in subCats %}
+          {% if sc == subCat %}
+            <p class="subCat text-link-selected">{{ sc.name }}</p>
+          {% else %}
+            <a href="{% url 'categories' item.id sc.id %}" class="subCat text-link">{{ sc.name }}</a>
+          {% endif %}
+        {% endfor %}
+
       {% else %}
         <a href="{% url 'categories' item.id %}" class="text-link">{{ item.name }}</a>
       {% endif %}
@@ -33,6 +46,24 @@
       </a>
     {% endfor %}
   </div>
+</section>
+
+<section class="pagination">
+  <ul class="pagination-ul">
+    <li class="{% if not paginator.has_previous %} disabled {% endif %}">
+      <a href="{% if paginator.has_previous %}?page={{ paginator.previous_page_number}}{% endif %}">&lt;</a>
+    </li>
+    {% for page in paginator.paginator.page_range %}
+      {% if page >= paginator.number|add:-2 and page <= paginator.number|add:2 %} 
+        <li>
+          <a href="?page={{ page }}" class="{% if paginator.number == page %}disabled{% endif %}">{{ page }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+    <li class="{% if not paginator.has_next %} disabled {% endif %}">
+      <a href="{% if paginator.has_next %}?page={{ paginator.next_page_number}}{% endif %}">&gt;</a>
+    </li>
+  </ul>
 </section>
 
 {% endblock content %}

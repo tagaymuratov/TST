@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
-from tstapp.models import Brands, Product, Categories, Images
+from django.core.paginator import Paginator
+from tstapp.models import Brands, Product, Categories, Images, SubCats
 
 def index(request):
   products = Product.objects.all().order_by('-id')[:12]
@@ -77,13 +78,23 @@ def product(request, product_slug):
 def howto(request):
   return render(request, 'tstapp/howto.html')
 
-def categories(request, id):
+def categories(request, id, subId=0):
+  page = request.GET.get('page', 1)
   cats = Categories.objects.all().order_by('name')
   cat = cats.get(id=id)
-  #cat = Categories.objects.get(id=id)
-  products = Product.objects.filter(category=cat)
+  subCats = SubCats.objects.filter(category = cat).order_by('name')
+
+  if subId != 0:
+    subCat = subCats.get(id=subId)
+    products = Product.objects.filter(subCat = subCat)
+  else:
+    subCat = 0
+    products = Product.objects.filter(category=cat)
+  
   product_list = []
-  for p in products:
+  paginator = Paginator(products, 12)
+  currentPage = paginator.page(int(page))
+  for p in currentPage:
     product_list.append(p.pk)
   tempImgs = Images.objects.filter(article__in=product_list)
   cards = []
@@ -93,12 +104,12 @@ def categories(request, id):
       article = i.article
       for p in products:
         if p == i.article:
-          cards.append({
-            'i' : i,
-            'p' : p
-          })
+          cards.append({ 'i':i, 'p':p })
 
   data = {
+    'subCat': subCat,
+    'subCats': subCats,
+    'paginator':currentPage,
     'cats':cats,
     'cat':cat,
     'pi' : cards

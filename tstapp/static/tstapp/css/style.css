@@ -25,7 +25,7 @@ html {
   padding: .5rem;
   border-radius: var(--border-radius);
   &:hover {
-    background: var(--color-surf-5);
+    background: var(--color-surf-0);
   }
 }
 
@@ -33,7 +33,7 @@ html {
   padding: .5rem;
   cursor: default;
   border-radius: var(--border-radius);
-  background: var(--color-surf-5);
+  background: var(--color-surf-0);
 }
 
 header{
@@ -193,7 +193,7 @@ footer{
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
   gap: 1rem;
   padding: 1rem 0;
   justify-content: center;
@@ -490,6 +490,24 @@ footer{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.pagination{
+  margin: 1rem auto;
+
+  .disabled{
+    opacity: .2;
+  }
+}
+
+.pagination-ul{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.subCat{
+  margin-left: 1rem;
 }
 
 @keyframes zoom {
