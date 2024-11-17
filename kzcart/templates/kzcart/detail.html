@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Корзина{% endblock 'title' %}
+{% block 'content' %}
+  <section class="heroTitle">
+    <p>Корзина</p>
+  </section>
+
+  <section class="kzcart-cards">
+    {% for item in kzcart%}
+      {% with product=item.product %}
+        <div class="kzcart-card">
+          <img src="{{ product.img.url}}">
+        </div>
+        <div class="kzcart-desc">
+
+        </div>
+      {% endwith %}
+    {% endfor %}
+  </section>
+{% endblock 'content' %}

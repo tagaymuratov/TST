@@ -50,19 +50,33 @@
 
 <section class="pagination">
   <ul class="pagination-ul">
-    <li class="{% if not paginator.has_previous %} disabled {% endif %}">
-      <a href="{% if paginator.has_previous %}?page={{ paginator.previous_page_number}}{% endif %}">&lt;</a>
-    </li>
-    {% for page in paginator.paginator.page_range %}
-      {% if page >= paginator.number|add:-2 and page <= paginator.number|add:2 %} 
+    {% if paginator.paginator.num_pages > 1 %}
+      {% if paginator.has_previous %}
         <li>
-          <a href="?page={{ page }}" class="{% if paginator.number == page %}disabled{% endif %}">{{ page }}</a>
+          <a href="?page={{paginator.previous_page_number}}">&lt;</a>
         </li>
       {% endif %}
-    {% endfor %}
-    <li class="{% if not paginator.has_next %} disabled {% endif %}">
-      <a href="{% if paginator.has_next %}?page={{ paginator.next_page_number}}{% endif %}">&gt;</a>
-    </li>
+
+      {% for page in paginator.paginator.page_range %}
+        {% if page >= paginator.number|add:-2 and page <= paginator.number|add:2 %} 
+          {% if paginator.number == page %}
+            <li>
+              <p class="current">{{ page }}</p>
+            </li>
+          {% else %}
+            <li>
+              <a href="?page={{ page }}">{{ page }}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {% if paginator.has_next %}
+        <li>
+          <a href="?page={{paginator.next_page_number}}">&gt;</a>
+        </li>
+      {% endif %}
+    {% endif %}
   </ul>
 </section>
 

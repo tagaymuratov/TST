@@ -496,14 +496,24 @@ footer{
 .pagination{
   margin: 1rem auto;
 
-  .disabled{
-    opacity: .2;
+  .current{
+    background: var(--color-surf-0);
+  }
+
+  .current, a{
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    line-height: 1rem;
+    text-align: center;
+  }
+
+  a:hover{
+    background: var(--color-surf-0);
   }
 }
 
 .pagination-ul{
   display: flex;
-  gap: 1rem;
   justify-content: center;
 }
 
