@@ -35,4 +35,36 @@
   </div>
 </section>
 
+<section class="pagination">
+  <ul class="pagination-ul">
+    {% if paginator.paginator.num_pages > 1 %}
+      {% if paginator.has_previous %}
+        <li>
+          <a href="?page={{paginator.previous_page_number}}">&lt;</a>
+        </li>
+      {% endif %}
+
+      {% for page in paginator.paginator.page_range %}
+        {% if page >= paginator.number|add:-2 and page <= paginator.number|add:2 %} 
+          {% if paginator.number == page %}
+            <li>
+              <p class="current">{{ page }}</p>
+            </li>
+          {% else %}
+            <li>
+              <a href="?page={{ page }}">{{ page }}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {% if paginator.has_next %}
+        <li>
+          <a href="?page={{paginator.next_page_number}}">&gt;</a>
+        </li>
+      {% endif %}
+    {% endif %}
+  </ul>
+</section>
+
 {% endblock content %}

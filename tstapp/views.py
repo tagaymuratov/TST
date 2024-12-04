@@ -32,6 +32,19 @@ def product(request, product_slug):
   post = get_object_or_404(Product, article=product_slug)
   imgs = Images.objects.filter(article = post)
 
+  colors_list = []
+  colors_dict = {}
+  for i in imgs:
+    if i.color not in colors_list:
+      colors_list.append(i.color)
+  
+  for c in colors_list:
+    temp = []
+    for i in imgs:
+      if c == i.color:
+        temp.append(i)
+    colors_dict[c] = temp
+
   same = Product.objects.filter(category = post.category).exclude(id = post.pk)[:6]
   same_list = []
   for s in same:
@@ -71,7 +84,7 @@ def product(request, product_slug):
     'i' : imgs,
     'sames' : sames,
     'brands': fromBrand,
-    'brandTitle': post.brand.name
+    'colors':colors_dict
   }
   return render(request, 'tstapp/product.html', context=data)
 
@@ -117,11 +130,14 @@ def categories(request, id, subId=0):
   return render(request, 'tstapp/categories.html', data)
 
 def brands(request, id):
+  page = request.GET.get('page', 1)
   brands = Brands.objects.all().order_by('name')
   brand = brands.get(id=id)
   products = Product.objects.filter(brand=brand)
   product_list = []
-  for p in products:
+  paginator = Paginator(products, 2)
+  currentPage = paginator.page(int(page))
+  for p in currentPage:
     product_list.append(p.pk)
   tempImgs = Images.objects.filter(article__in=product_list)
   cards = []
@@ -137,6 +153,7 @@ def brands(request, id):
           })
 
   data = {
+    'paginator':currentPage,
     'brands':brands,
     'brand':brand,
     'pi':cards

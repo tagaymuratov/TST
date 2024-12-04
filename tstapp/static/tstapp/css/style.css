@@ -194,6 +194,7 @@ footer{
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+  grid-template-rows: max-content;
   gap: 1rem;
   padding: 1rem 0;
   justify-content: center;
@@ -317,6 +318,17 @@ footer{
     padding: 1rem 0;
     p{
       margin-left: 1rem;
+    }
+    .brand{
+      a{
+        display: inline-block;
+        font-weight: bold;
+        border-radius: var(--border-radius);
+        padding: .5rem;
+        &:hover{
+          background: var(--color-surf-0);
+        }
+      }
     }
   }
 
@@ -519,6 +531,18 @@ footer{
 
 .subCat{
   margin-left: 1rem;
+}
+
+.colors{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 2rem);
+  gap: .5rem;
+  margin: 1rem;
+}
+
+.color{
+  height: 2rem;
+  border-radius: var(--border-radius);
 }
 
 @keyframes zoom {

@@ -7,15 +7,17 @@
 
 <section class="product">
   <div class="product-img">
-    <div class="imgsList">
-      {% for img in i %}
-      <div class="imgBox sqBox">
-        <img src="{{ img.thumb.url }}" class="subImg">
-        <img src="{{ img.src.url }}" class="original">
-      </div>
-      {% endfor %}
+    <div class="imgsList {{key}}">
+    {% for key,value in colors.items %}
+      {% for item in value %}
+        <div class="imgBox sqBox {{key}}">
+          <img src="{{ item.thumb.url }}" class="subImg">
+          <img src="{{ item.src.url }}" class="original">
+        </div>
+      {% endfor%}
+    {% endfor %}
+
     </div>
-    
     <div class='mainImgContainer sqBox'>
       <img class="mainImg" src="{{ i.0.thumb.url }}">
     </div>
@@ -24,8 +26,17 @@
   <div class="desc">
     <h1>{{ p.title }}</h1>
     <div class="arc">{{ p.article }}</div>
-    <p class="brand">Производитель: <b>{{ p.brand }}</b></p>
+    <p class="brand">Производитель: <a href="{% url 'brands' p.brand.id %}">{{ p.brand.name }}</a></p>
     <div>{{ p.description|linebreaks }}</div>
+
+    {% if colors|length > 1 %}
+      <div class="colors">
+        {% for item in colors %}
+          <div class="color" style="background:{{item}}"></div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
     <p class="price">Стоимость: {{ p.price }} ₸</p>
     {% if p.available == False %}
       <p class='product_available'>НЕТ В НАЛИЧИИ</p>
