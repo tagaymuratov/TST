@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from tstapp.models import Brands, Product, Categories, Images, SubCats
 
 def index(request):
-  products = Product.objects.all().order_by('-id')[:12]
+  products = Product.objects.all().order_by('-id')[:16]
   products_list = []
   for p in products:
     products_list.append(p.pk)
@@ -45,7 +45,7 @@ def product(request, product_slug):
         temp.append(i)
     colors_dict[c] = temp
 
-  same = Product.objects.filter(category = post.category).exclude(id = post.pk)[:6]
+  same = Product.objects.filter(category = post.category).exclude(id = post.pk)[:8]
   same_list = []
   for s in same:
     same_list.append(s.pk)
@@ -62,7 +62,7 @@ def product(request, product_slug):
             'p' : p
           })
 
-  brand_prod = Product.objects.filter(brand = post.brand).exclude(id = post.pk)[:6]
+  brand_prod = Product.objects.filter(brand = post.brand).exclude(id = post.pk)[:8]
   brand_list = []
   for b in brand_prod:
     brand_list.append(b.pk)
@@ -105,7 +105,7 @@ def categories(request, id, subId=0):
     products = Product.objects.filter(category=cat)
   
   product_list = []
-  paginator = Paginator(products, 12)
+  paginator = Paginator(products, 16)
   currentPage = paginator.page(int(page))
   for p in currentPage:
     product_list.append(p.pk)
@@ -135,7 +135,7 @@ def brands(request, id):
   brand = brands.get(id=id)
   products = Product.objects.filter(brand=brand)
   product_list = []
-  paginator = Paginator(products, 2)
+  paginator = Paginator(products, 16)
   currentPage = paginator.page(int(page))
   for p in currentPage:
     product_list.append(p.pk)
@@ -162,7 +162,7 @@ def brands(request, id):
 
 def allcats(request):
   cats = Categories.objects.all().order_by('name')
-  products = Product.objects.all()[:24]
+  products = Product.objects.all()[:16]
   products_list = []
   for p in products:
     products_list.append(p.pk)
@@ -190,7 +190,7 @@ def allcats(request):
 
 def allBrands(request):
   brands = Brands.objects.all().order_by('name')
-  products = Product.objects.all()[:24]
+  products = Product.objects.all()[:16]
   products_list = []
   for p in products:
     products_list.append(p.pk)

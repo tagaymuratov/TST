@@ -29,7 +29,7 @@ class Product(models.Model):
   
 class Images(models.Model): 
   article = models.ForeignKey('Product', on_delete=models.DO_NOTHING, verbose_name='Артикль')
-  src = models.ImageField(upload_to='imgs/products/', verbose_name='Изображение')
+  src = models.ImageField(upload_to='imgs/products/', verbose_name='Фаил')
   thumb = models.ImageField(upload_to='imgs/products/', verbose_name='Миниатюра', blank=True, editable=False)
   color = ColorField(blank=True)
 
@@ -41,7 +41,7 @@ class Images(models.Model):
 
   def save(self, *args, **kwargs):
       img = Image.open(self.src)
-      name, ext = os.path.splitext(self.src.name)
+      name = os.path.splitext(self.src.name)
       img.thumbnail((700,700))
       temp_img = BytesIO()
       img.save(temp_img, format='webp', lossless=True, icc_profile=img.info.get('icc_profile'))
