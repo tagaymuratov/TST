@@ -41,7 +41,7 @@ class Images(models.Model):
 
   def save(self, *args, **kwargs):
       img = Image.open(self.src)
-      name = os.path.splitext(self.src.name)
+      name, ext = os.path.splitext(self.src.name)
       img.thumbnail((700,700))
       temp_img = BytesIO()
       img.save(temp_img, format='webp', lossless=True, icc_profile=img.info.get('icc_profile'))
