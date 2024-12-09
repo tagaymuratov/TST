@@ -85,8 +85,8 @@ header{
     }
 
     .nav_products_drop{
-      overflow: auto;
-      max-height: calc(100vh-5rem);
+      overflow-y: auto;
+      max-height: calc(100vh - 5rem);
       min-width: 15rem;
       display: none;
       position: absolute;
