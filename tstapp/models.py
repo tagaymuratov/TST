@@ -7,7 +7,7 @@ from PIL import Image
 from colorfield.fields import ColorField
 
 class Product(models.Model):
-  article = models.SlugField(max_length=32, unique=True, db_index=True, verbose_name='Артикль')
+  article = models.SlugField(max_length=32, unique=True, db_index=True, verbose_name='Артикул')
   title = models.CharField(max_length=128, verbose_name='Название')
   brand = models.ForeignKey('Brands', on_delete=models.DO_NOTHING, verbose_name='Бренд')
   description = models.TextField(blank=True, verbose_name='Описание')
@@ -28,7 +28,7 @@ class Product(models.Model):
       super().save(*args, **kwargs)
   
 class Images(models.Model): 
-  article = models.ForeignKey('Product', on_delete=models.DO_NOTHING, verbose_name='Артикль')
+  article = models.ForeignKey('Product', on_delete=models.DO_NOTHING, verbose_name='Артикул')
   src = models.ImageField(upload_to='imgs/products/', verbose_name='Фаил')
   thumb = models.ImageField(upload_to='imgs/products/', verbose_name='Миниатюра', blank=True, editable=False)
   color = ColorField(blank=True)

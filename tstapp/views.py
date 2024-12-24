@@ -134,12 +134,12 @@ def brands(request, id):
   brands = Brands.objects.all().order_by('name')
   brand = brands.get(id=id)
   products = Product.objects.filter(brand=brand)
-  product_list = []
+  product_pks = []
   paginator = Paginator(products, 16)
   currentPage = paginator.page(int(page))
   for p in currentPage:
-    product_list.append(p.pk)
-  tempImgs = Images.objects.filter(article__in=product_list)
+    product_pks.append(p.pk)
+  tempImgs = Images.objects.filter(article__in=product_pks)
   cards = []
   article = ' '
   for i in tempImgs:
@@ -220,3 +220,32 @@ def contacts(request):
 
 def about(request):
   return render(request, 'tstapp/about.html')
+
+def search(request):
+  q = request.GET.get('q')
+  page = request.GET.get('page', 1)
+  products = Product.objects.filter(title__icontains=q) | Product.objects.filter(description__icontains=q) | Product.objects.filter(article__icontains=q)
+  paginator = Paginator(products, 16)
+  currentPage = paginator.page(int(page))
+  product_pks = []
+  for p in currentPage:
+    product_pks.append(p.pk)
+  tempImgs = Images.objects.filter(article__in=product_pks)
+  cards = []
+  article = ' '
+  for i in tempImgs:
+    if article != i.article: 
+      article = i.article
+      for p in products:
+        if p == i.article:
+          cards.append({
+            'i' : i,
+            'p' : p
+          })
+
+  data={
+    'q':q,
+    'paginator':currentPage,
+    'pi':cards
+  }
+  return render(request, 'tstapp/search.html', data)

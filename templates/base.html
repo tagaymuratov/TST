@@ -18,6 +18,11 @@
 <body>
   <header>
     <a href="{% url 'index' %}" class="logo_link"><img src="{% static 'tstapp/imgs/tst-logo.svg' %}"></a>
+    <form class="header_search" action="{% url 'search' %}" method="get">
+      <span class="material-symbols-rounded header_search-icon">search</span>
+      <input class="header_search-input" name="q" type="text" placeholder="Поиск" maxlength="128">
+      <span class="material-symbols-rounded header_search-icon header_search-clean">close</span>
+    </form>
     <nav>
       <div class="nav_drop">
         <a href="{% url 'allcats' %}" class="nav_products">ПРОДУКЦИЯ</a>
@@ -57,19 +62,13 @@
     
   <aside class="sideNav">
     <span class="material-symbols-rounded sideNavClose">close</span>
+    <form class="side_search" action="{% url 'search' %}" method="get">
+      <span class="material-symbols-rounded header_search-icon">search</span>
+      <input class="side_search-input" name="q" type="text" placeholder="Поиск" maxlength="128">
+      <span class="material-symbols-rounded header_search-icon side_search-clean">close</span>
+    </form>
     <a href="{% url 'allcats' %}" class="sideNav_products text-link">ПРОДУКЦИЯ</a>
-    <!--<div class="sideNav_products_drop">
-      {% for c in db_cats %}
-      <a href="{% url 'categories' c.id %}" class="text-link">{{ c.name }}</a>
-      {% endfor %}
-    </div>-->
-
     <a href="{% url 'allbrands' %}" class="sideNav_products text-link">БРЕНДЫ</a>
-    <!--<div class="sideNav_products_drop">
-      {% for b in db_brands %}
-      <a href="{% url 'brands' b.id %}" class="text-link">{{ b.name }}</a>
-      {% endfor %}
-    </div>-->
     <a href="{% url 'about'%}" class="text-link">О НАС</a>
     <a href="{% url 'contacts' %}" class="text-link">КОНТАКТЫ</a>
     <a href="{% url 'index' %}" class="sideNav-logo"><img src="{% static 'tstapp/imgs/tst-logo.svg' %}"></a>
