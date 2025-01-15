@@ -605,6 +605,16 @@ footer{
   border-radius: var(--border-radius);
 }
 
+.weekProduct{
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 25rem));
+  margin: 1rem auto;
+  padding: 0 1rem;
+  max-width: 100%;
+  justify-content: center;
+}
+
 @keyframes zoom {
   from {transform: scale(0)}
   to {transform: scale(1)}
