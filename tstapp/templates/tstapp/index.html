@@ -4,58 +4,75 @@
 {% block title %}TST - Безопасность в деталях{% endblock title %}
 
 {% block content %}
+
+<img src="{% static 'tstapp/imgs/hero-1.jpg' %}" alt="" class='index-hero'>
+
+<section class="slogan">
+  <h1>Безопасность в деталях</h1>
+</section>
+
 <!--
-  <img src="{% static 'tstapp/imgs/hero-1.jpg' %}" alt="" class='index-hero'>
+<section class="weekProduct">
+  <div class="weekCard">
+    <img src="{% static 'tstapp/imgs/week.jpg' %}">
+  </div>
+  <div class="weekCard">
+    <img src="{% static 'tstapp/imgs/adv1.jpeg' %}">
+  </div>
+</section>
 -->
-  <section class="slogan">
-    <h1>Безопасность в деталях</h1>
-  </section>
 
-  <section class="weekProduct">
-    <div class="card">
-      <div class="imgbox">
-        <img src="{% static 'tstapp/imgs/week.jpg' %}">
-      </div>
-    </div>
-    <div class="card">
-      <div class="imgbox">
-        <img src="{% static 'tstapp/imgs/adv1.jpeg' %}">
-      </div>
-    </div>
-  </section>
+<section class="lineProducts">
+  <h1>Популярные товары</h1>
+  <div class="cards">
+    {% for item in popular %}
+      <a class="card" href="{{ item.p.get_absolute_url }}">
+        <!--<span class="material-symbols-rounded">favorite</span>-->
+        <div class="imgbox">
+          <img src="{{ item.i.thumb.url }}">
+        </div>
+        <div class="group">
+          <div class="arc">{{ item.p.article }}</div>
+          <div class="price">{{ item.p.price }} ₸</div>
+        </div>
+        <div class="title">{{ item.p.title }}</div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
 
-  <section class="lineProducts">
-    <h1>Новые товары</h1>
-    <div class="cards">
-      {% for item in products %} 
-        <a class="card" href="{{ item.p.get_absolute_url }}">
-          <!--<span class="material-symbols-rounded">favorite</span>-->
-          <div class="imgbox">
-            <img src="{{ item.i.thumb.url }}">
-          </div>
-          <div class="group">
-            <div class="arc">{{ item.p.article }}</div>  
-            <div class="price">{{ item.p.price }} ₸</div>
-          </div>
-          <div class="title">{{ item.p.title }}</div>
-        </a>
-      {% endfor %}
-    </div>
-  </section>
+<section class="lineProducts">
+  <h1>Новые товары</h1>
+  <div class="cards">
+    {% for item in products reversed %} 
+      <a class="card" href="{{ item.p.get_absolute_url }}">
+        <!--<span class="material-symbols-rounded">favorite</span>-->
+        <div class="imgbox">
+          <img src="{{ item.i.thumb.url }}">
+        </div>
+        <div class="group">
+          <div class="arc">{{ item.p.article }}</div>  
+          <div class="price">{{ item.p.price }} ₸</div>
+        </div>
+        <div class="title">{{ item.p.title }}</div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
 
-  <section class="sectionPartners">
-    <h1>Наши партнёры</h1>
-    <div class="partners">
-      <img src="{% static 'tstapp/imgs/logos/Velilla.svg' %}" class="item">
-      <img src="{% static 'tstapp/imgs/logos/Dupont.png' %}" class="item">
-      <img src="{% static 'tstapp/imgs/logos/Martor.svg' %}" class="item">
-      <img src="{% static 'tstapp/imgs/logos/msa.svg' %}" class="item">
-      <img src="{% static 'tstapp/imgs/logos/tecron.svg' %}" class="item">
-      <img src="{% static 'tstapp/imgs/logos/Tyvek.svg' %}" class="item">
-      <img src="{% static 'tstapp/imgs/logos/redwing.svg' %}" class="item">
-      <img src="{% static 'tstapp/imgs/logos/3m.svg' %}" class="item">
-      <img src="{% static 'tstapp/imgs/logos/traverrse.jpeg' %}" class="item">
-    </div>
-  </section>
+<section class="sectionPartners">
+  <h1>Наши партнёры</h1>
+  <div class="partners">
+    <img src="{% static 'tstapp/imgs/logos/Velilla.svg' %}" class="item">
+    <img src="{% static 'tstapp/imgs/logos/Dupont.png' %}" class="item">
+    <img src="{% static 'tstapp/imgs/logos/Martor.svg' %}" class="item">
+    <img src="{% static 'tstapp/imgs/logos/msa.svg' %}" class="item">
+    <img src="{% static 'tstapp/imgs/logos/tecron.svg' %}" class="item">
+    <img src="{% static 'tstapp/imgs/logos/Tyvek.svg' %}" class="item">
+    <img src="{% static 'tstapp/imgs/logos/redwing.svg' %}" class="item">
+    <img src="{% static 'tstapp/imgs/logos/3m.svg' %}" class="item">
+    <img src="{% static 'tstapp/imgs/logos/traverrse.jpeg' %}" class="item">
+  </div>
+</section>
 
 {% endblock content %}

@@ -17,7 +17,7 @@
     {% endfor %}
   </div>
   <div class="cards">
-    {% for item in items %}
+    {% for item in items reversed %}
      <a class="card" href="{{ item.p.get_absolute_url }}">
         <!--<span class="material-symbols-rounded">favorite</span>-->
         <div class="imgbox">

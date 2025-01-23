@@ -221,7 +221,7 @@ footer{
 }
 
 .index-hero{
-  margin: 3rem 1rem 1rem 1rem;
+  margin: 2rem 1rem 1rem 1rem;
   width: calc(100% - 2rem);
   height: 300px;
   border-radius: var(--border-radius);
@@ -230,7 +230,7 @@ footer{
 
 .slogan{
   width: calc(100% - 2rem);
-  margin: 2rem 1rem;
+  margin: 1rem;
   display: flex;
   justify-content: center;
   h1{
@@ -242,7 +242,6 @@ footer{
 .lineProducts{
   max-width: 100%;
   padding: 1rem;
-  margin-top: 2rem;
 }
 
 .cards {
@@ -255,7 +254,6 @@ footer{
 }
 
 .card {
-  /*max-width: 25rem;*/
   background: var(--color-surf-0);
   border-radius: var(--border-radius);
   padding: 1rem;
@@ -339,10 +337,6 @@ footer{
     transform: translate(-50%, -50%);
   }
 }
-
-/*******************
-    product.html
-*******************/
 
 .product{
   display: grid;
@@ -608,11 +602,21 @@ footer{
 .weekProduct{
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 25rem));
-  margin: 1rem auto;
-  padding: 0 1rem;
+  /*grid-template-columns: repeat(auto-fill, minmax(18.75rem, 25rem));*/
+  grid-template-columns: 3fr 2fr;
+  margin: 1rem;
   max-width: 100%;
   justify-content: center;
+}
+
+.weekCard{
+  background: var(--color-surf-0);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+
+  & img{
+    max-height:20rem
+  }
 }
 
 @keyframes zoom {

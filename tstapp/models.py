@@ -15,6 +15,8 @@ class Product(models.Model):
   subCat = models.ForeignKey('SubCats', on_delete=models.DO_NOTHING, verbose_name='Подкатегорея', blank=True, null=True)
   price = models.IntegerField(verbose_name='Цена')
   available = models.BooleanField(verbose_name='Товар в наличии', default=True)
+  popular = models.BooleanField(verbose_name='Популярный', default=False)
+  prom_week = models.BooleanField(verbose_name='Товар недели', default=False)
   #sizes
 
   def __str__(self):

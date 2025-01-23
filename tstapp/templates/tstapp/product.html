@@ -47,7 +47,7 @@
 <section class="lineProducts">
   <h1>Смотрите также</h1>
   <div class="cards">
-    {% for item in sames %} 
+    {% for item in sames reversed %} 
       <a class="card" href="{{ item.p.get_absolute_url }}">
         <!--<span class="material-symbols-rounded">favorite</span>-->
         <div class="imgbox">
@@ -66,7 +66,7 @@
 <section class="lineProducts">
   <h1>Еще от {{ p.brand.name }}</h1>
   <div class="cards">
-    {% for item in brands %} 
+    {% for item in brands reversed %} 
       <a class="card" href="{{ item.p.get_absolute_url }}">
         <!--<span class="material-symbols-rounded">favorite</span>-->
         <div class="imgbox">
