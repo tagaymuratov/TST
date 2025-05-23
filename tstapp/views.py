@@ -207,3 +207,6 @@ def search(request):
     'pi':cards
   }
   return render(request, 'tstapp/search.html', data)
+
+def certs(request):
+  return render(request, 'tstapp/certs.html')
