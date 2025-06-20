@@ -560,6 +560,50 @@ footer{
   justify-content: center;
 }
 
+.about-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.certs{
+  margin: 2rem auto 4rem auto;
+  padding: 0 1rem;
+  max-width: 75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  img{
+    max-width: 100%;
+    margin-bottom: 1rem;
+    margin: 0 auto 1rem auto;
+  }
+  .certs_card{
+    display: grid;
+    border-radius: var(--border-radius);
+    background-color: var(--color-surf-0);
+    padding: 1rem;
+
+    .certs_card_links{
+      display: flex;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+  }
+  a{
+    text-align: center;
+  }
+  a_temp{
+    padding: 1rem;
+    background-color: var(--color-surf-2);
+    border-radius: var(--border-radius);
+    text-align: center;
+  }
+}
+
 .pagination{
   margin: 1rem auto;
 
@@ -631,7 +675,7 @@ footer{
     display: none;
   }
   
-  .about {
+  .about, .certs {
     grid-template-columns: 1fr;
   }
 
