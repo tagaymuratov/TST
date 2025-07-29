@@ -1,6 +1,7 @@
+from urllib import request
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
-from tstapp.models import Brands, Product, Categories, Images, SubCats
+from tstapp.models import Brands, Product, Categories, Images, SubCats, Articles
 
 def getProductList(income):
   pk_list = []
@@ -23,13 +24,28 @@ def getProductList(income):
   
   return obj
 
+def getArticlesList(income):
+  obj=[]
+  for i in income:
+    obj.append({
+      'id': i.id,
+      'title': i.title,
+      'img': i.img.url,
+      'published_at': i.published_at,
+      'content': i.content[:100]
+    })
+  return obj
+
+
 def index(request):
   products = getProductList(Product.objects.all().order_by('-id')[:16])
   popular = getProductList(Product.objects.filter(popular = True)) 
+  articles = getArticlesList(Articles.objects.all().order_by('-published_at')[:4])
 
   data = {
     'products' : products,
-    'popular' : popular
+    'popular' : popular,
+    'articles' : articles,
   }
 
   return render(request, 'tstapp/index.html', context=data)
@@ -210,3 +226,16 @@ def search(request):
 
 def certs(request):
   return render(request, 'tstapp/certs.html')
+
+def article(request, id):
+  post = get_object_or_404(Articles, id=id)
+  data = {
+    'post': post
+  }
+  return render(request, 'tstapp/article.html', data)
+
+def sg360_1(request):
+  return render(request, 'tstapp/sg360-1.html')
+
+def sg360_2(request):
+  return render(request, 'tstapp/sg360-2.html')

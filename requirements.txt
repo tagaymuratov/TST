@@ -1,3 +1,4 @@
 Django~=5.1.1
 Pillow~=10.4.0
 django-colorfield~=0.11.0
+django_ckeditor~=6.7.3

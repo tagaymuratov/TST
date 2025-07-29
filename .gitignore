@@ -1,3 +1,6 @@
+## kezign ##
+venv
+
 ## Django ###
 *.log
 *.pot

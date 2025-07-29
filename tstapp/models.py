@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.core.files.base import ContentFile
 from PIL import Image
 from colorfield.fields import ColorField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class Product(models.Model):
   article = models.SlugField(max_length=32, unique=True, db_index=True, verbose_name='Артикул')
@@ -78,3 +79,11 @@ class SubCats(models.Model):
     class Meta:
       verbose_name='Подкатегория'
       verbose_name_plural='Подкатегории'
+
+class Articles(models.Model):
+    title = models.CharField(max_length=200)
+    img = models.ImageField(upload_to='imgs/articles/', verbose_name='Preview', default='imgs/articles/default.jpg')
+    content = RichTextUploadingField()
+    published_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.title

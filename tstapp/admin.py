@@ -1,7 +1,7 @@
 from typing import Any
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Brands, Categories, Images, Product, SubCats
+from .models import Brands, Categories, Images, Product, SubCats, Articles
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -35,3 +35,9 @@ class BrandsAdmin(admin.ModelAdmin):
 class SubCatsAdmin(admin.ModelAdmin):
   ordering = ['name']
   list_display = ['name', 'category']
+
+@admin.register(Articles)
+class ArticlesAdmin(admin.ModelAdmin):
+  list_display = ('title', 'published_at')
+  search_fields = ('title', 'content')
+  ordering = ('-published_at',)
