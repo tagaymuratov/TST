@@ -629,8 +629,8 @@ footer{
   gap: 1rem;
   img{
     max-width: 100%;
-    margin-bottom: 1rem;
-    margin: 0 auto 1rem auto;
+    height: 100%;
+    object-fit: cover;
   }
   .certs_card{
     display: grid;
