@@ -131,6 +131,12 @@ header{
   }
 }
 
+.quote{
+  font-style: italic;
+  text-align: center;
+  font-size: .8rem;
+}
+
 .side_search{
     display: flex;
     align-items: center;
