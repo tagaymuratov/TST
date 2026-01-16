@@ -15,6 +15,4 @@ urlpatterns = [
     path('certs/', views.certs, name='certs'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('article/<int:id>/', views.article, name='article'),
-    path('sg360-1/', views.sg360_1, name='sg360-1'),
-    path('sg360-2/', views.sg360_2, name='sg360-2')
 ]

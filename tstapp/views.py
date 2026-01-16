@@ -233,9 +233,3 @@ def article(request, id):
     'post': post
   }
   return render(request, 'tstapp/article.html', data)
-
-def sg360_1(request):
-  return render(request, 'tstapp/sg360-1.html')
-
-def sg360_2(request):
-  return render(request, 'tstapp/sg360-2.html')

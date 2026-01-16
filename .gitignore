@@ -1,6 +1,8 @@
 ## kezign ##
 venv
 env
+.venv
+.env
 
 ## Django ###
 *.log
